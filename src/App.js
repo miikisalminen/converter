@@ -95,6 +95,12 @@ class App extends React.Component {
               <option value="km">km</option>
               <option value="mi">mi</option>
             </select>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(this.state.dist);
+              }}
+              title="Copy"
+            ></button>
             <input
               type="number"
               placeholder="Weight"
@@ -120,6 +126,12 @@ class App extends React.Component {
               <option>kg</option>
               <option>lb</option>
             </select>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(this.state.dist);
+              }}
+              title="Copy"
+            ></button>
             <input
               type="number"
               placeholder="Temperature"
@@ -145,6 +157,12 @@ class App extends React.Component {
               <option value="c">C</option>
               <option value="k">K</option>
             </select>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(this.state.dist);
+              }}
+              title="Copy"
+            ></button>
           </div>
         </div>
       </div>
