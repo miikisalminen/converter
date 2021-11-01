@@ -1,5 +1,5 @@
 import "./App.css";
-import { distCalc } from "./calc";
+import { distCalc, wgtCalc, tempCalc } from "./calc";
 import React from "react";
 
 class App extends React.Component {
@@ -27,16 +27,36 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleDist = this.handleDist.bind(this);
+    this.handleWgt = this.handleWgt.bind(this);
+    this.handleTemp = this.handleTemp.bind(this);
   }
-
+  // Handles select-state changes
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
-
+  // Handles distance calculation
   handleDist(event) {
     const result = distCalc(
       this.state.dist1,
       this.state.dist2,
+      event.target.value
+    );
+    this.setState({ [event.target.name]: result });
+  }
+  // Handles weigth calculation
+  handleWgt(event) {
+    const result = wgtCalc(
+      this.state.wgt1,
+      this.state.wgt2,
+      event.target.value
+    );
+    this.setState({ [event.target.name]: result });
+  }
+  // Handles temperature calculation
+  handleTemp(event) {
+    const result = tempCalc(
+      this.state.temp1,
+      this.state.temp2,
       event.target.value
     );
     this.setState({ [event.target.name]: result });
@@ -79,10 +99,10 @@ class App extends React.Component {
               type="number"
               placeholder="Weight"
               pattern="[0-9]*"
-              onChange={this.handleChange}
+              onChange={this.handleWgt}
               name="wgt"
             />
-            <select>
+            <select name="wgt1" onChange={this.handleChange}>
               <option>g</option>
               <option>kg</option>
               <option>lb</option>
@@ -95,7 +115,7 @@ class App extends React.Component {
               disabled
               placeholder={this.state.wgt}
             />
-            <select>
+            <select name="wgt2" onChange={this.handleChange}>
               <option>g</option>
               <option>kg</option>
               <option>lb</option>
@@ -104,13 +124,13 @@ class App extends React.Component {
               type="number"
               placeholder="Temperature"
               pattern="[0-9]*"
-              onChange={this.handleChange}
+              onChange={this.handleTemp}
               name="temp"
             />
-            <select>
-              <option>F</option>
-              <option>C</option>
-              <option>K</option>
+            <select name="temp1" onChange={this.handleChange}>
+              <option value="f">F</option>
+              <option value="c">C</option>
+              <option value="k">K</option>
             </select>
             <p>→</p>
             <input
@@ -120,10 +140,10 @@ class App extends React.Component {
               disabled
               placeholder={this.state.temp}
             />
-            <select>
-              <option>F</option>
-              <option>C</option>
-              <option>K</option>
+            <select name="temp2" onChange={this.handleChange}>
+              <option value="f">F</option>
+              <option value="c">C</option>
+              <option value="k">K</option>
             </select>
           </div>
         </div>
